@@ -11,5 +11,6 @@ if(true) {
 }
 console.log(x);
 
-// const arr = [1,2,3,4, "4343"];
-//     arr = "String";
+let bc = [1,2,3,4, 4343];
+console.log(bc);
+ arr = "String";
