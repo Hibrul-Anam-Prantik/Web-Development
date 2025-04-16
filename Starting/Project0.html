@@ -2,6 +2,7 @@
 <html lang = "en">
     <head>
         <title> Dashboard </title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header>
@@ -10,7 +11,7 @@
         <hr>
         <main>
             <section>
-                <form action="/action.js">
+                <form id="loginForm">
                     <h3>Log in to your Account</h3>
                     <input type = "text" placeholder = "user name"> <br>
                     <input type="password" placeholder = "password"> <br><b>Log in</b> <br> <br>
@@ -52,6 +53,7 @@
                     <input type="submit" value = "Submit">
                 </form>
             </section><hr><br>
+            <div id="result" style="margin-top: 20px;"></div><br><br>
             <section><b>Resourcses for html:</b> <br>
                 <iframe width="400" height="250" src="https://www.youtube.com/embed/HcOc7P5BMi4?si=QoLAPCqyhKLmeuS-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br>
@@ -178,5 +180,6 @@
         <footer>
             <pre>Contact me at me_me@g.bracu.ac.bd</pre>
         </footer>
+        <script src="action.js"></script>
     </body>
 </html>
