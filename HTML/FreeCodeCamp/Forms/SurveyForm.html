@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Survey Form</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 id="title">Survey Form</h1>
+      <p id="description">
+        Thank you for being with us and helping us making our service even better.
+      </p>
+    </header>
+    
+    <main>
+      <form id="survey-form" action="">
+        <label id="name-label">Name</label>
+        <input required type="text" id="name" placeholder="Enter your name"> </br>
+        <label id="email-label">Email</label>
+        <input required type="email" id="email" placeholder="Enter your email">
+        </br>
+        <label id="number-label">Age (optional)</label>
+        <input type="number" id="number" min="1" max="100" placeholder="age"> </br>
+        <label for="dropdown">Which option best describes your current role?</label>
+        </br>
+        <select id="dropdown">
+          <option value="student">Student</option>
+          <option value="job-holder">Job-holder</option>
+          <option value="others">Others</option>
+        </select>
+        </br>
+        <label id="yes-no">Was this your first time claiming our service?</label>
+        </br>
+        <input type="radio" id="yes" name="customer" value="yes">
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" name="customer" value="no">
+        <label for="no">No</label> </br>
+        <label for="suggestion">What would you like to see improved?</label> </br>
+        <input type="checkbox" id="project" value="project">
+        <label for="project">Project</label>
+        <input type="checkbox" id="behaviour" value="behaviour">
+        <label for="behaviour">Behaviour</label>
+        </br>
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback"></textarea>
+        <button id="submit" type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
