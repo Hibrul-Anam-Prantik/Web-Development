@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Button</title>
+  <style>
+    #custom-btn {
+      display: inline-block;
+      padding: 0.4em 1em;
+      font-size: 1rem;
+      font-family: sans-serif;
+      color: buttontext;
+      background-color: buttonface;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+    }
+
+    #custom-btn:focus {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+
+    #custom-btn:active {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div id="custom-btn" role="button" tabindex="0">Click Me</div>
+
+  <script>
+    const button = document.getElementById("custom-btn");
+
+    button.addEventListener("click", () => {
+      alert("Button clicked!");
+    });
+
+    button.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault(); 
+        button.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
