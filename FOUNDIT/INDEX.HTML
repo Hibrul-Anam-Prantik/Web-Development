@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT - BRAC University Lost & Found</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind to use Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* A subtle gradient for the hero section */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 248, 255, 0.8) 100%);
+        }
+        
+        /* Simple modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+        }
+        .modal-open {
+            display: flex; /* Show when open */
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-3xl font-bold text-blue-600">
+                Found<span class="text-gray-800">IT</span>
+            </a>
+            
+            <!-- BRAC University Logo Placeholder -->
+            <div class="flex items-center space-x-4">
+                <img 
+                    src="https://placehold.co/150x50/EBF8FF/3182CE?text=BRAC+University+Logo" 
+                    alt="BRAC University Logo" 
+                    class="h-10 sm:h-12"
+                    onerror="this.onerror=null;this.src='https://placehold.co/150x50?text=BRACU+Logo';"
+                >
+                
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Found Items</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Report Lost</a>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Login</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Nav (Hamburger Icon) - can be made functional with more JS -->
+            <div class="md:hidden">
+                <button class="text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-[85vh] flex items-center justify-center hero-gradient p-6">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+                
+                <!-- Hero Text -->
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight mb-6">
+                        Lost something at <span class="text-blue-600">BRACU</span>?
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-600 mb-10">
+                        Don't worry. <span class="font-semibold">FoundIT</span> is your central hub for reporting lost and finding found items on campus.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transform hover:-translate-y-1 transition duration-300" onclick="openModal('reportModal')">
+                            Report a Lost Item
+                        </button>
+                        <button class="bg-white text-blue-600 border-2 border-blue-600 text-lg font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transform hover:-translate-y-1 transition duration-300" onclick="openModal('browseModal')">
+                            Browse Found Items
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hero Visual (Lost & Found Concept) -->
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-80 h-80 sm:w-96 sm:h-96">
+                        <!-- Box Icon -->
+                        <svg class="w-full h-full text-blue-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 0H4v2h12V5zM2 10.5a1.5 1.5 0 011.5-1.5h13A1.5 1.5 0 0118 10.5v3.382l1.4 1.05a.5.5 0 01.1.4V17.5a.5.5 0 01-.5.5h-17a.5.5 0 01-.5-.5v-2.168a.5.5 0 01.1-.4L2 13.882V10.5zM3.5 11v2.538l-1.12 0.84a.5.5 0 01-.28.092V17h16v-2.53a.5.5 0 01-.28-.092L16.5 13.538V11h-13z" clip-rule="evenodd"></path></svg>
+                        
+                        <!-- Floating Items -->
+                        <div class="absolute top-1/4 left-1/4 w-16 h-16 text-blue-500 animate-pulse">
+                            <!-- Question Mark -->
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.79 4 4 0 1.152-.468 2.19-1.228 2.99a5.98 5.98 0 01-2.27 1.393L12 17.5v-.01c0 .01.01.01.01.01a.5.5 0 01-.5.5h-.01a.5.5 0 01-.5-.5v-.01c0-.01-.01-.01-.01-.01L11 16.007a4.98 4.98 0 00-2.43-1.39A4.01 4.01 0 018 13c0-1.07.3-2.07.822-2.9z M12 21a9 9 0 100-18 9 9 0 000 18z"></path></svg>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 w-12 h-12 text-blue-400" style="animation: pulse 2s infinite 0.5s;">
+                            <!-- Magnifying Glass -->
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">How It Works</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center p-6 border border-gray-200 rounded-lg shadow-lg">
+                        <div class="bg-blue-100 p-5 rounded-full mb-4">
+                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">1. Report Lost Item</h3>
+                        <p class="text-gray-600">Fill out a simple form with details about your lost item. The more details, the better!</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center p-6 border border-gray-200 rounded-lg shadow-lg">
+                        <div class="bg-blue-100 p-5 rounded-full mb-4">
+                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">2. Search Found Items</h3>
+                        <p class="text-gray-600">Browse our database of items found on campus. You can filter by category, location, and date.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center p-6 border border-gray-200 rounded-lg shadow-lg">
+                        <div class="bg-blue-100 p-5 rounded-full mb-4">
+                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">3. Reclaim Your Item</h3>
+                        <p class="text-gray-600">Found a match? Follow the instructions to verify ownership and coordinate a pickup.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold text-white mb-2">FoundIT</h3>
+                <p class="text-gray-400">Connecting lost and found items at BRAC University.</p>
+            </div>
+            <div class="mb-6">
+                <p class="font-semibold">Contact Us:</p>
+                <a href="mailto:contact@foundit.bracu.ac" class="text-blue-400 hover:text-blue-300">contact@foundit.bracu.ac</a>
+            </div>
+            <div class="mb-6">
+                <p class="text-gray-400">Developed by:</p>
+                <p class="text-lg text-white">Prantik, Asif, and Lamia</p>
+            </div>
+            <div class="border-t border-gray-700 pt-6">
+                <p class="text-gray-500">&copy; 2025 FoundIT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <!-- Modal Placeholders -->
+    
+    <!-- Report Lost Item Modal -->
+    <div id="reportModal" class="modal fixed inset-0 z-50 bg-black bg-opacity-50 items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4">Report a Lost Item</h2>
+            <p class="mb-6">This is where the "Report Lost Item" form would appear, allowing users to describe what they lost, where, and when.</p>
+            <button class="bg-blue-600 text-white w-full py-2 rounded-lg hover:bg-blue-700" onclick="closeModal('reportModal')">
+                Close
+            </button>
+        </div>
+    </div>
+    
+    <!-- Browse Found Items Modal -->
+    <div id="browseModal" class="modal fixed inset-0 z-50 bg-black bg-opacity-50 items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4">Browse Found Items</h2>
+            <p class="mb-6">This is where a searchable and filterable gallery of found items would be displayed.</p>
+            <button class="bg-blue-600 text-white w-full py-2 rounded-lg hover:bg-blue-700" onclick="closeModal('browseModal')">
+                Close
+            </button>
+        </div>
+    </div>
+    
+    
+    <!-- Simple JavaScript for Modals -->
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('modal-open');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('modal-open');
+            }
+        }
+        
+        // Close modal if clicking outside the content
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('modal-open');
+            }
+        }
+    </script>
+
+</body>
+</html>
